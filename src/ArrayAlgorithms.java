@@ -173,16 +173,46 @@ public class ArrayAlgorithms {
     }
     public static void shiftLeftModify(int[] numList)
     {
-        int max = numList.length-1;
-        for(int i = 0;i< numList.length;i++){
-            int a  = i;
-            if((a-1) == -1){
-                a = max;
-                numList[a] = numList[i];
-            }
-            else  a =a-1;
+        int last = numList[0];
+        int a = 0;
+        for(int i = 1; i < numList.length; i++){
             numList[a] = numList[i];
+            a++;
+        }
+        numList[numList.length-1] = last;
+    }
+
+    public static void shiftNumLeftModify(int[] numList, int shiftNum)
+    {
+        for(int i = 0; i<shiftNum; i++){
+            int last = numList[0];
+            int a = 0;
+            for(int b = 1; b < numList.length; b++){
+                numList[a] = numList[b];
+                a++;
+            }
+            numList[numList.length-1] = last;
         }
     }
+    public static void shiftNumRightModify(int[] numList, int shiftNum)
+    {
+        shiftNum = numList.length-shiftNum;
+        ArrayAlgorithms.shiftNumLeftModify(numList, shiftNum);
+
+    }
+    public static int[] reverse(int[] numList)
+    {
+        int[] n = new int[numList.length];
+        int max = numList.length-1;
+        int last = numList[numList.length];
+        for(int i = 0; i < numList.length-1; i++){
+            n[i] = numList[max];
+            max--;
+        }
+        numList[numList.length-1] = last;
+        return n;
+    }
+
+
 
 }
